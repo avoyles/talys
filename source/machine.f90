@@ -33,7 +33,7 @@ subroutine machine
 !
 ! The code directory can be changed here via a script, or manually.
 !
-  codedir = '/Users/koning/talys/'
+  codedir = '/home/andrew/src/talys/'
   i = len_trim(codedir)
   if (codedir(i:i) /= '/') codedir = trim(codedir)//'/'
 !
@@ -92,7 +92,7 @@ subroutine machine
   write(date(1:4),'(i4.4)') year
   write(date(6:7),'(i2.2)') month
   write(date(9:10),'(i2.2)') day
-  user = 'Arjan Koning'
+  user = 'Andrew Voyles'
   return
 end subroutine machine
 ! Copyright A.J. Koning 2023

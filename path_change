@@ -8,7 +8,7 @@ echo
 #
 # Set user
 #
-user='Arjan Koning'
+user='Andrew Voyles'
 #
 #  Ensure that the code directory is changed by replacing
 #    the path name in subroutine machine.f or machine.f90
