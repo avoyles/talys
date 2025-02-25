@@ -329,12 +329,14 @@ subroutine strucinitial
   nbranch = 0
   Nisomer = 0
   nlevmax2 = 0
+  branchdone = 0
   flagwidth = .false.
   flagpreeq = .false.
   flagcompang = .false.
   flaggiant = .false.
   flagmulpre = .false.
   flaginvecis = .true.
+  preeqfirst = .true.
   Ethresh = 0.
   Qres = 0.
   flagurrendf = .false.

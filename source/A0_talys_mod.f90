@@ -6,7 +6,7 @@ module A0_talys_mod
 ! Author    : Arjan Koning
 !
 ! 2023-12-30: Original code
-! 2024-10-25: Current version
+! 2025-02-21: Current version
 !-----------------------------------------------------------------------------------------------------------------------------------
 !
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -426,6 +426,7 @@ module A0_talys_mod
   real(sgl), dimension(0:numZ,0:numN,0:1,numgam,2)        :: tpr            ! strength of PR
   real(sgl), dimension(0:numZ,0:numN,0:1,numgam,2)        :: tpradjust      ! adjustable factor for strength of PR
   real(sgl), dimension(0:numZ,0:numN,0:1,numgam,3)        :: upbend         ! properties of the low-energy upbend of given multipola
+  real(sgl), dimension(0:numZ,0:numN,0:1,numgam,3)        :: upbendadjust   ! properties of the low-energy upbend of given multipola
   real(sgl), dimension(0:numZ,0:numN,0:1,numgam)          :: wtable         ! constant to adjust tabulated strength functions
   real(sgl), dimension(0:numZ,0:numN,0:1,numgam)          :: wtableadjust   ! adjustable correction to adjust tabulated strength fun
 !
@@ -437,7 +438,6 @@ module A0_talys_mod
   logical                                                   :: flagdisp      ! flag for dispersive optical model
   logical                                                   :: flagincadj    ! flag for OMP adjustment on incident channel
   logical                                                   :: flagjlm       ! flag for using semi-microscopic JLM OMP
-  logical                                                   :: flagpruitt    ! flag for using Pruitt parameters for KD03
   logical                                                   :: flaglocalomp  ! flag for local (y) or global (n) optical model
   logical                                                   :: flagompall    ! flag for new optical model calculation for all nuclei
   logical                                                   :: flagomponly   ! flag to execute ONLY an optical model calculation
@@ -449,6 +449,7 @@ module A0_talys_mod
   logical                                                   :: flagsoukhoinp ! flag for Soukhovitskii OMP for actinides
   logical                                                   :: flagsoukho    ! flag for Soukhovitskii OMP for actinides
   logical                                                   :: flagriplrisk  ! flag for going outside RIPL mass validity range
+  character(len=1)                                          :: pruitt        ! identifier for using Pruitt parameters for KD03
   character(len=132), dimension(0:numZph, 0:numNph, numpar) :: optmod        ! file with optical model parameters
   character(len=132), dimension(0:numZ)                     :: optmodfileN   ! optical model parameter file for neutrons
   character(len=132), dimension(0:numZ)                     :: optmodfileP   ! optical model parameter file for protons
@@ -615,6 +616,7 @@ module A0_talys_mod
   logical                             :: flagpeout    ! flag for output of pre-equilibrium results
   logical                             :: flagsurface  ! flag for surface effects in exciton model
   logical                             :: preeqadjust  ! logical for energy-dependent pre-eq adjustment
+  logical                             :: preeqfirst   ! logical for first preequilibrium output
   integer                             :: breakupmodel ! model for break-up reaction: 1. Kalbach 2. Avrigeanu
   integer                             :: mpreeqmode   ! designator for multiple pre-equilibrium model
   integer                             :: msdbins      ! number of energy points for DWBA calculation for MSD
@@ -828,6 +830,7 @@ module A0_talys_mod
   integer, dimension(0:numZ,0:numN,0:numlev)                   :: nbranch     ! number of branching levels
   integer, dimension(-1:numZ,-1:numN)                          :: Nisomer     ! number of isomers for this nuclide
   integer, dimension(0:numZ,0:numN)                            :: nlevmax2    ! maximum number of levels
+  integer, dimension(0:numZ,0:numN)                            :: branchdone  ! flag for applying branching ratio normalization
   integer, dimension(0:numZ,0:numN,0:numlev2)                  :: levnum      ! number of level
   integer, dimension(0:numZ,0:numN,0:numlev2)                  :: parlev      ! parity of level
   real(sgl), dimension(0:numZ,0:numN,0:numlev,0:numlev)        :: branchratio ! gamma-ray branching ratio to level
@@ -2244,4 +2247,4 @@ module A0_talys_mod
   real(sgl), dimension(numen6) :: xsreac6   ! reaction cross section for ENDF-6 file
   real(sgl), dimension(numen6) :: xstot6    ! total cross section (neutrons only) for ENDF-6 file
 end module A0_talys_mod
-! Copyright A.J. Koning 2024
+! Copyright A.J. Koning 2025

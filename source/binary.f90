@@ -276,7 +276,7 @@ subroutine binary
           term=xsracappopex(nex)
           xspop(Zix, Nix, nex, J, parity) = xspop(Zix, Nix, nex, J, parity) + term
           xspopex(Zix, Nix, nex) = xspopex(Zix, Nix, nex) + term
-          xspopex0(type, nex) = xspopex(Zix, Nix, nex) + term
+          xspopex0(type, nex) = xspopex0(type, nex) + term
           if (flagpop) then
             xspopnucP(Zix, Nix, parity) = xspopnucP(Zix, Nix, parity) + term
             xspopexP(Zix, Nix, nex, parity) = xspopexP(Zix, Nix, nex, parity) + term
@@ -314,6 +314,7 @@ subroutine binary
   xscompall = max(xsreacinc - xsdirdiscsum - xspreeqsum - xsgrsum - xsracape, 0.)
   xscompnonel = xscompall - xscompel
   xscompnonel = max(xscompnonel, 0.)
+  if (k0 == 0) xstotinc = xselastot + xsnonel
 !
 ! ***************** Create binary feeding channels *********************
 !
